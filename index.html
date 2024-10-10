@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafios das Flores</title>
+    <style>
+        body {
+            background-color: #1a1a2e; /* Cor de fundo mais escura */
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            overflow: hidden;
+            position: relative; /* Permite posicionar o fundo de estrelas */
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            animation: glow 1.5s infinite alternate; /* Animação de brilho */
+        }
+        p {
+            font-size: 1.5em;
+            margin-top: 10px;
+            animation: glow 1.5s infinite alternate; /* Animação de brilho */
+        }
+        button {
+            background-color: white; /* Botão branco */
+            color: #1a1a2e; /* Texto do botão em cor escura */
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.5em;
+            cursor: pointer;
+            animation: shine 1.5s infinite alternate; /* Animação de brilho */
+            transition: transform 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1); /* Efeito de aumentar ao passar o mouse */
+        }
+        @keyframes shine {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+            }
+        }
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.7);
+            }
+        }
+        /* Estrelas com emojis no fundo */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Espaço entre as estrelas */
+            align-items: flex-start; /* Alinha as estrelas ao topo */
+            pointer-events: none; /* Para que os cliques não interfiram nas estrelas */
+        }
+        .star {
+            font-size: 1.5em;
+            animation: twinkle 1.5s infinite alternate; /* Animação cintilante para as estrelas */
+            opacity: 0.8;
+            margin: 5px; /* Margem entre as estrelas */
+        }
+        @keyframes twinkle {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars">
+        <!-- Adicione emojis como estrelas distribuídas -->
+        <span class="star" style="margin-left: 5%;">⭐</span>
+        <span class="star" style="margin-left: 10%;">✨</span>
+        <span class="star" style="margin-left: 15%;">🌟</span>
+        <span class="star" style="margin-left: 20%;">⭐</span>
+        <span class="star" style="margin-left: 25%;">✨</span>
+        <span class="star" style="margin-left: 30%;">🌟</span>
+        <span class="star" style="margin-left: 35%;">⭐</span>
+        <span class="star" style="margin-left: 40%;">✨</span>
+        <span class="star" style="margin-left: 45%;">🌟</span>
+        <span class="star" style="margin-left: 50%;">⭐</span>
+        <span class="star" style="margin-left: 55%;">✨</span>
+        <span class="star" style="margin-left: 60%;">🌟</span>
+        <span class="star" style="margin-left: 65%;">⭐</span>
+        <span class="star" style="margin-left: 70%;">✨</span>
+        <span class="star" style="margin-left: 75%;">🌟</span>
+        <span class="star" style="margin-left: 80%;">⭐</span>
+        <span class="star" style="margin-left: 85%;">✨</span>
+        <span class="star" style="margin-left: 90%;">🌟</span>
+        <span class="star" style="margin-left: 95%;">⭐</span>
+    </div>
+    <h1>Desafios te aguardam</h1>
+    <p>Mas no fim tudo será recompensado...</p>
+    <button onclick="startChallenge()">Começar</button>
+
+    <script>
+        function startChallenge() {
+            window.location.href = "enigma_flores_1.html"; // Altere para o nome do seu primeiro desafio
+        }
+    </script>
+</body>
+</html>
