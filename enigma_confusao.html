@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma da Confusão</title>
+    <style>
+        body {
+            background-color: #fbdbe5;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            color: #8e44ad;
+            font-size: 3em;
+            text-shadow: 2px 2px 6px #f7d6fa;
+        }
+        .description {
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: #6d214f;
+        }
+        .cipher-text {
+            font-size: 2em; /* Aumenta o tamanho do texto */
+            color: #8e44ad; /* Cor da mensagem cifrada */
+            animation: pulse 1.5s infinite, shine 1.5s infinite; /* Animações pulsante e de brilho */
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes shine {
+            0% {
+                text-shadow: 0 0 5px #f7d6fa, 0 0 10px #f7d6fa, 0 0 15px #f7d6fa;
+            }
+            50% {
+                text-shadow: 0 0 20px #f7d6fa, 0 0 30px #f7d6fa, 0 0 40px #f7d6fa;
+            }
+            100% {
+                text-shadow: 0 0 10px #f7d6fa, 0 0 20px #f7d6fa, 0 0 30px #f7d6fa;
+            }
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #8e44ad;
+            border-radius: 5px;
+            margin: 20px 0;
+            width: 50%;
+        }
+        button {
+            background-color: #8e44ad;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #6c3483;
+        }
+        .result {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .reference {
+            background-color: #e8d1e6;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enigma da Confusão</h1>
+    <p class="description">À medida que adentramos o labirinto das letras embaralhadas, um desafio intrigante se mostra: a ordem precisa ser restaurada. Mas não se deixe levar apenas pela superfície; é a dualidade, um par, que serve como a chave mestra para desvendar esse enigma. Assim como as flores se entrelaçam em sete melodias, essa dualidade se torna um guia, revelando a conexão necessária para unir as letras e formar o que está escondido.</p>
+    
+    <p class="cipher-text">Dkdkc sgtp lcolqtp okeqkme?</p>
+    <input type="number" id="shift" placeholder="Digite o número de deslocamento">
+    <button onclick="decipher()">Decifrar Mensagem</button>
+    <p class="result" id="result"></p>
+
+    <div class="reference" id="reference">
+        <h2>Alfabeto de Referência</h2>
+        <p><strong>A</strong> = 1, <strong>B</strong> = 2, <strong>C</strong> = 3, <strong>D</strong> = 4, <strong>E</strong> = 5, <strong>F</strong> = 6, <strong>G</strong> = 7, <strong>H</strong> = 8, <strong>I</strong> = 9, <strong>J</strong> = 10, <strong>K</strong> = 11, <strong>L</strong> = 12, <strong>M</strong> = 13, <strong>N</strong> = 14, <strong>O</strong> = 15, <strong>P</strong> = 16, <strong>Q</strong> = 17, <strong>R</strong> = 18, <strong>S</strong> = 19, <strong>T</strong> = 20, <strong>U</strong> = 21, <strong>V</strong> = 22, <strong>W</strong> = 23, <strong>X</strong> = 24, <strong>Y</strong> = 25, <strong>Z</strong> = 26</p>
+    </div>
+
+    <script>
+        let attempts = 0;
+
+        function removeAccents(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function caesarDecipher(input, shift) {
+            let result = "";
+            for (let char of input) {
+                if (char.match(/[a-zA-Z]/)) { // Verifica se é uma letra
+                    const start = char === char.toUpperCase() ? 'A'.charCodeAt(0) : 'a'.charCodeAt(0);
+                    // Ajuste na fórmula para decifrar corretamente
+                    const decryptedChar = String.fromCharCode(((char.charCodeAt(0) - start - shift + 26) % 26) + start);
+                    result += decryptedChar;
+                } else {
+                    result += char; // Caractere não alfabético permanece inalterado
+                }
+            }
+            return result;
+        }
+
+        function decipher() {
+            const input = "Dkdkc sgtp lcolqtp okeqkme?"; // Mensagem cifrada
+            const shift = parseInt(document.getElementById("shift").value) || 0; // Obtém o valor do deslocamento do input
+            const decrypted = caesarDecipher(input, shift);
+            document.getElementById("result").textContent = decrypted; // Mostra a mensagem decifrada
+
+            if (decrypted === "Bibia quer namorar comigo?") {
+                setTimeout(() => {
+                    window.location.href = 'pedido_de_namoro.html'; // Redireciona após 7 segundos
+                }, 7000);
+            }
+        }
+    </script>
+</body>
+</html>

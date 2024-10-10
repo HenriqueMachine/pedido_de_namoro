@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma das Flores - Desafio 5</title>
+    <style>
+        body {
+            background-color: #fbdbe5;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            color: #8e44ad;
+            font-size: 3em;
+            text-shadow: 2px 2px 6px #f7d6fa;
+        }
+        .question {
+            font-size: 2em; /* Aumenta o tamanho da pergunta */
+            margin: 20px 0;
+            color: #6d214f;
+            animation: shine 1.5s infinite; /* Animação mais intensa */
+        }
+        @keyframes shine {
+            0% {
+                text-shadow: 0 0 5px #f7d6fa, 0 0 10px #f7d6fa, 0 0 15px #f7d6fa;
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 20px #f7d6fa, 0 0 30px #f7d6fa, 0 0 40px #f7d6fa;
+                transform: scale(1.1);
+            }
+            100% {
+                text-shadow: 0 0 10px #f7d6fa, 0 0 20px #f7d6fa, 0 0 30px #f7d6fa;
+                transform: scale(1);
+            }
+        }
+        .hint {
+            background-color: #ffe6f2;
+            border: 2px solid #8e44ad;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: #c0392b;
+            font-weight: bold; /* Adiciona negrito */
+            display: inline-block;
+        }
+        .hint {
+            color: #8e44ad; /* Cor lilás para a dica */
+        }
+        .music {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #8e44ad;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #8e44ad;
+            border-radius: 5px;
+            margin: 20px 0;
+            width: 50%;
+        }
+        button {
+            background-color: #8e44ad;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #6c3483;
+        }
+        a {
+            margin-top: 20px;
+            color: #8e44ad;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .reference {
+            background-color: #e8d1e6;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+        .result {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .number {
+            font-size: 1.5em; /* Aumenta o tamanho das cifras numéricas */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enigma das Flores</h1>
+    <p class="question">5.(<span class="number">19</span>-<span class="number">20</span>-<span class="number">18</span>-<span class="number">1</span>-<span class="number">23</span>-<span class="number">2</span>-<span class="number">15</span>-<span class="number">18</span>-<span class="number">5</span>)</p>
+    <div class="hint">
+        <strong>Dica:</strong> "Assim como as estações mudam, será que o amor também tem seu próprio tempo para florescer? O que você faz para cultivar esse amor? O que faz o amor crescer em meio às mudanças da vida?"
+    </div>
+    <div class="music">Música: <strong>"Lovely (com Khalid)"</strong> - Minuto <strong>0:30</strong> (Termina em <strong>1:00</strong>)</div>
+    <input type="text" id="answer5" placeholder="Digite sua resposta aqui...">
+    <button onclick="checkAnswer('answer5', 'Tulipa')">Verificar Resposta</button>
+    <p class="result" id="result5"></p>
+    <a href="enigma_flores_6.html" id="nextChallenge" style="display:none;">Próximo Desafio &rarr;</a>
+
+    <div class="reference" id="reference">
+        <h2>Alfabeto de Referência</h2>
+        <p><strong>A</strong> = 1, <strong>B</strong> = 2, <strong>C</strong> = 3, <strong>D</strong> = 4, <strong>E</strong> = 5, <strong>F</strong> = 6, <strong>G</strong> = 7, <strong>H</strong> = 8, <strong>I</strong> = 9, <strong>J</strong> = 10, <strong>K</strong> = 11, <strong>L</strong> = 12, <strong>M</strong> = 13, <strong>N</strong> = 14, <strong>O</strong> = 15, <strong>P</strong> = 16, <strong>Q</strong> = 17, <strong>R</strong> = 18, <strong>S</strong> = 19, <strong>T</strong> = 20, <strong>U</strong> = 21, <strong>V</strong> = 22, <strong>W</strong> = 23, <strong>X</strong> = 24, <strong>Y</strong> = 25, <strong>Z</strong> = 26</p>
+    </div>
+
+    <script>
+        let attempts = 0;
+
+        function removeAccents(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function checkAnswer(inputId, correctAnswer) {
+            const userAnswer = removeAccents(document.getElementById(inputId).value);
+            const resultElement = document.getElementById('result5');
+            attempts++;
+            
+            if (userAnswer.toLowerCase() === removeAccents(correctAnswer.toLowerCase())) {
+                resultElement.innerHTML = "✅ Resposta Correta! 🌸🌼🌷";
+                resultElement.style.color = "green";
+                document.getElementById('nextChallenge').style.display = 'inline';
+                document.getElementById('reference').style.display = 'none'; // Hide reference
+            } else {
+                resultElement.textContent = "❌ Resposta Errada. Tente novamente!";
+                resultElement.style.color = "red";
+
+                if (attempts >= 3) {
+                    document.getElementById('reference').style.display = 'block'; // Show reference after 3 attempts
+                }
+            }
+        }
+    </script>
+</body>
+</html>

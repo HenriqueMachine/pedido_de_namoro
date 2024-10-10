@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Namoro</title>
+    <style>
+        body {
+            background-color: #fbdbe5; /* Rosa suave */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #333;
+            position: relative;
+            overflow: auto; /* Permitir scroll */
+            padding: 20px;
+            margin: 0; /* Remove a margem padrão */
+            height: 100vh; /* Define altura total da tela */
+        }
+        h1 {
+            color: #8e44ad; /* Lilás */
+            margin-top: 50px;
+            font-size: 3em;
+            text-shadow: 2px 2px 6px #f7d6fa;
+            animation: glow 1.5s infinite alternate; /* Animação de brilho */
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #8e44ad, 0 0 20px #8e44ad, 0 0 30px #8e44ad;
+            }
+            to {
+                text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4;
+            }
+        }
+        p {
+            font-size: 1.3em;
+            margin: 20px 0;
+            color: #6d214f;
+        }
+        .heart {
+            font-size: 80px;
+            color: red;
+        }
+        .button {
+            background-color: #8e44ad; /* Lilás */
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.3em;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+            background-color: #6c3483; /* Lilás escuro */
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(139, 69, 191, 0.8);
+        }
+        .no-button {
+            background-color: #c0392b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .no-button:hover {
+            background-color: #e74c3c;
+        }
+        /* Fundo com mais corações */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/heart-pattern.png');
+            opacity: 0.3; /* Mais visível */
+            z-index: -1;
+        }
+        /* Brilho ao redor da página */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: 0 0 100px 50px rgba(220, 145, 255, 0.8); /* Sombra lilás por toda a página */
+            z-index: -2;
+        }
+        /* Animação sutil de corações */
+        .heart-animation {
+            position: absolute;
+            font-size: 30px;
+            color: red;
+            animation: float 5s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-20px); opacity: 0.6; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        /* Destaque especial para "Quer namorar comigo?" */
+        .highlight {
+            font-size: 1.8em;
+            color: #ff69b4;
+            font-weight: bold;
+            animation: highlightEffect 2s infinite;
+        }
+        @keyframes highlightEffect {
+            0% { transform: scale(1); color: #ff69b4; }
+            50% { transform: scale(1.1); color: #8e44ad; }
+            100% { transform: scale(1); color: #ff69b4; }
+        }
+        /* Estilo da mensagem de "Parabéns!" */
+        .congrats-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            color: #8e44ad;
+            background-color: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(139, 69, 191, 0.8);
+            z-index: 100;
+        }
+        /* Estilo para centralizar todo o conteúdo */
+        .centered {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* Remover a altura da tela para permitir scroll */
+            padding-bottom: 40px; /* Espaço extra para a parte inferior */
+        }
+    </style>
+</head>
+<body>
+    <div id="content" class="centered">
+        <h1>Uma Pergunta Muito Especial</h1>
+        <p>Já chega de ficar enrolando...</p>
+        <p>Ao seu lado cada momento é como desvendar um enigma ✨</p>
+        <p>Vamos dominar o mundo juntos? 🌍🤯</p>
+        <p class="heart">❤️</p>
+        <p class="highlight">Quer namorar comigo?</p> <!-- Destaque com animação -->
+
+        <!-- Botão de "Sim" -->
+        <a href="#" class="button" id="simBtn">Sim! 💜</a>
+
+        <!-- Botão de "Não" -->
+        <button class="no-button" id="noBtn">Não ❌</button>
+
+        <!-- Animação de corações -->
+        <div class="heart-animation" style="top: 5%; left: 10%;">❤️</div>
+        <div class="heart-animation" style="top: 10%; left: 25%;">💖</div>
+        <div class="heart-animation" style="top: 15%; left: 40%;">💜</div>
+        <div class="heart-animation" style="top: 20%; left: 55%;">🌹</div>
+        <div class="heart-animation" style="top: 25%; left: 70%;">🌺</div>
+        <div class="heart-animation" style="top: 30%; left: 85%;">💐</div>
+        <div class="heart-animation" style="top: 35%; left: 15%;">🌷</div>
+        <div class="heart-animation" style="top: 40%; left: 30%;">✨</div>
+        <div class="heart-animation" style="top: 50%; left: 60%;">💜</div>
+        <div class="heart-animation" style="top: 55%; left: 75%;">🌸</div>
+        <div class="heart-animation" style="top: 65%; left: 20%;">🌻</div>
+        <div class="heart-animation" style="top: 70%; left: 35%;">✨</div>
+        <div class="heart-animation" style="top: 80%; left: 65%;">💖</div>
+        <div class="heart-animation" style="top: 85%; left: 80%;">💐</div>
+        <div class="heart-animation" style="top: 90%; left: 95%;">✨</div>
+        <div class="heart-animation" style="top: 15%; left: 5%;">🌷</div>
+        <div class="heart-animation" style="top: 30%; left: 25%;">✨</div>
+        <div class="heart-animation" style="top: 40%; left: 35%;">🌺</div>
+        <div class="heart-animation" style="top: 50%; left: 45%;">🌹</div>
+        <div class="heart-animation" style="top: 60%; left: 55%;">🌼</div>
+        <div class="heart-animation" style="top: 80%; left: 75%;">💜</div>
+        <div class="heart-animation" style="top: 90%; left: 85%;">🌻</div>
+        <div class="heart-animation" style="top: 5%; left: 75%;">✨</div>
+        <div class="heart-animation" style="top: 10%; left: 60%;">🌸</div>
+        <div class="heart-animation" style="top: 15%; left: 45%;">💐</div>
+        <div class="heart-animation" style="top: 20%; left: 30%;">✨</div>
+        <div class="heart-animation" style="top: 25%; left: 15%;">💖</div>
+        
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noBtn');
+        const simButton = document.getElementById('simBtn');
+        const content = document.getElementById('content');
+
+        // Função que faz o botão "Não" se mover
+        noButton.addEventListener('mouseover', function() {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        // Centraliza o conteúdo e desabilita o botão "Sim" ao clicar
+        simButton.addEventListener('click', function() {
+            const congratsDiv = document.createElement('div');
+            congratsDiv.className = 'congrats-message';
+            congratsDiv.innerHTML = '🎉💍 Parabéns! 🎉💍';
+            document.body.appendChild(congratsDiv);
+            content.style.transform = 'translate(-50%, -50%)';
+            content.style.position = 'absolute';
+            content.style.top = '50%';
+            content.style.left = '50%';
+            simButton.style.pointerEvents = 'none'; // Desabilita o botão "Sim"
+        });
+    </script>
+</body>
+</html>
